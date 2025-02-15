@@ -19,4 +19,8 @@ jobs:
           name: dotnet-app
           path: ${{ steps.dotnet-build.outputs.output-directory-path }}
 
+  greeter:
+    uses: ./.github/workflows/greeter.yml
+    with:
+      person-name: "Yep, yep"
 
