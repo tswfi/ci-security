@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   run-composite:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
