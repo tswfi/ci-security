@@ -4,8 +4,17 @@ permissions: read-all
 on:
   workflow_dispatch:
 jobs:
-  example-job:
-    runs-on: ubuntu-latest
+  run-composite:
     steps:
-      - name: Run hello world
-        run: echo "🎉 Step of the job is running on ${{ runner.os }}!"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - id: dotnet-build
+        uses: ./.github/actions/build-dotnet-app
+        with:
+          folder-path: "app/uptodate-app"
+      - name: Publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-app:
+          path: ${{ steps.dotnet-build.outputs.output-directory-path }}
+
